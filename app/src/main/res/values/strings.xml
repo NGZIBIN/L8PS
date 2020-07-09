@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">L8PS</string>
+    <string-array name="location">
+        <item>North</item>
+        <item>Central</item>
+        <item>East</item>
+
+    </string-array>
 </resources>

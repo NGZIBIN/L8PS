@@ -10,7 +10,9 @@ import android.Manifest;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -34,6 +36,30 @@ public class MainActivity extends AppCompatActivity {
         final LatLng poi_central = new LatLng(1.300542, 103.841226);
         final LatLng poi_east = new LatLng(1.350057, 103.934452);
 
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i == 0){
+                    if(map != null){
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_north,15));
+                    }
+                }else if (i == 1){
+                    if(map != null){
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_central,15));
+                    }
+                }else if(i == 2){
+                    if(map != null){
+                        map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_east,15));
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         FragmentManager fm = getSupportFragmentManager();
         SupportMapFragment mapFragment = (SupportMapFragment)fm.findFragmentById(R.id.map);
 
@@ -93,36 +119,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnNorth = findViewById(R.id.btnNorth);
-        btnCentral = findViewById(R.id.btnCentral);
-        btnEast = findViewById(R.id.btnEast);
-
-        btnNorth.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(map != null){
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_north,15));
-                }
-            }
-        });
-
-        btnCentral.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(map != null){
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_central,15));
-                }
-            }
-        });
-
-        btnEast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(map != null){
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_east,15));
-                }
-            }
-        });
+//        btnNorth = findViewById(R.id.btnNorth);
+//        btnCentral = findViewById(R.id.btnCentral);
+//        btnEast = findViewById(R.id.btnEast);
+//
+//        btnNorth.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(map != null){
+//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_north,15));
+//                }
+//            }
+//        });
+//
+//        btnCentral.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(map != null){
+//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_central,15));
+//                }
+//            }
+//        });
+//
+//        btnEast.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                if(map != null){
+//                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(poi_east,15));
+//                }
+//            }
+//        });
 
     }
 }
